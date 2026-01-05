@@ -9,29 +9,29 @@ export default function burger() {
     // Обработчик открытия меню
     burgerBtnEl.addEventListener('click', () => {
         mainMenuEl.classList.add('main-menu--active');
-        disableScroll(); // Заблокируем скроллинг
+        disableScroll(); // Блокирует скролл
     });
 
     // Обработчик закрытия меню
     closeBtnEl.addEventListener('click', () => {
         mainMenuEl.classList.remove('main-menu--active');
-        enableScroll(); // Разблокируем скроллинг
+        enableScroll(); // Разблокирует скролл
     });
 
     // Закрытие меню при клике на ссылку
     mainMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
             mainMenuEl.classList.remove('main-menu--active');
-            enableScroll(); // Разблокируем скроллинг
+            enableScroll(); // Разблокиру скроллинг
         });
     });
 
-    // Заблокировать скроллинг
+    // Заблокировать скролл
     function disableScroll() {
         document.body.style.overflowY = 'hidden';
     }
 
-    // Разрешить скроллинг
+    // Разрешить скролл
     function enableScroll() {
         document.body.style.overflowY = 'auto';
     }
