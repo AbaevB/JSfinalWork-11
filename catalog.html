@@ -10,30 +10,30 @@
 
 <body>
 
-
+<div id="templates" style="display: none;">
   <!--! Шаблон отправки формы - не удалять! -->
-  <template id="messageTemplate">
-  <div class="message" id="messageSuccess">
-      <div class="message__content">
-        <button class="message__close" id="closeSuccess" type="button">
-              <svg class="message__close-icon" aria-hidden="true" width="24" height="24">
-                <use xlink:href="images/sprite.svg#icon-close"></use>
-              </svg>
-        </button>
-        <svg class="message__icon" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44">
-            <use xlink:href="images/sprite.svg#icon-check-cyrcle"></use>
-        </svg>
-        <h2 class="message__title">
-          Благодарим за&nbsp;обращение!
-        </h2>
-        <p class="message__text">
-          Мы&nbsp;получили вашу заявку и&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время
-        </p>
-      </div>
-    </div>
-  </template>
+            <template id="messageTemplate">
+            <div class="message" id="messageSuccess">
+                <div class="message__content">
+                  <button class="message__close" id="closeSuccess" type="button">
+                        <svg class="message__close-icon" aria-hidden="true" width="24" height="24">
+                          <use xlink:href="images/sprite.svg#icon-close"></use>
+                        </svg>
+                  </button>
+                  <svg class="message__icon" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44">
+                      <use xlink:href="images/sprite.svg#icon-check-cyrcle"></use>
+                  </svg>
+                  <h2 class="message__title">
+                    Благодарим за&nbsp;обращение!
+                  </h2>
+                  <p class="message__text">
+                    Мы&nbsp;получили вашу заявку и&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время
+                  </p>
+                </div>
+              </div>
+            </template>
 
-  <!--! Шаблон карточки товара - не удалять!  -->
+          <!--! Шаблон карточки товара - не удалять!  -->
               <template id="productCardTemplate">
                 <div class="product-card">
                 <div class="product-card__visual">
@@ -85,7 +85,7 @@
               </div>
               </template>
               <!--/ Шаблон карточки товара  -->
-  <!--! Шаблон карточки товар дня - не удалять! -->
+          <!--! Шаблон карточки товар дня - не удалять! -->
             <template id="productCardDayTemplate">
               <div class="product-card product-card--small">
               <div class="product-card__visual">
@@ -153,6 +153,22 @@
                   </li>
                </template>
                 <!--/ Шаблон фрагмента корзины  -->
+          <!--! Шаблон пагинации - не удалять! -->
+              <template id="paginationTemplate">
+                <ol class="catalog__pagination" id="catalogPagination">
+                  <li class="catalog__pagination-item">
+                    <button class="catalog__pagination-link">1</button>
+                  </li>
+                  <li class="catalog__pagination-item">
+                    <button class="catalog__pagination-link">2</button>
+                  </li>
+                  <li class="catalog__pagination-item">
+                    <button class="catalog__pagination-link">3</button>
+                  </li>
+                </ol>
+              </template>
+</div>
+
 <header class="header">
   <div class="container">
 
@@ -453,32 +469,10 @@
             </select>
           </div>
           <ul class="catalog__list" id="catalogList">
-            <!--! Добавление карточек из шаблона-->
+            <!--? Добавление карточек из шаблона-->
           </ul>
-          <ol class="catalog__pagination" id="mainPagination">
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">1</button>
-              </li>
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">2</button>
-              </li>
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">3</button>
-              </li>
-            </ol>
-          <template id="paginationTemplate">
-            <ol class="catalog__pagination" id="catalogPagination">
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">1</button>
-              </li>
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">2</button>
-              </li>
-              <li class="catalog__pagination-item">
-                <button class="catalog__pagination-link">3</button>
-              </li>
-            </ol>
-          </template>
+          <!--? Блок с кнопками пагинации -->
+
 
         </div>
       </div>
