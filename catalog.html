@@ -4,41 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="css/style.css" rel="stylesheet">
   <title>Каталог товаров - Briaton</title>
 </head>
 
 <body>
+
+
+  <!--! Шаблон отправки формы - не удалять! -->
+  <template id="messageTemplate">
+  <div class="message" id="messageSuccess">
+      <div class="message__content">
+        <button class="message__close" id="closeSuccess" type="button">
+              <svg class="message__close-icon" aria-hidden="true" width="24" height="24">
+                <use xlink:href="images/sprite.svg#icon-close"></use>
+              </svg>
+        </button>
+        <svg class="message__icon" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44">
+            <use xlink:href="images/sprite.svg#icon-check-cyrcle"></use>
+        </svg>
+        <h2 class="message__title">
+          Благодарим за&nbsp;обращение!
+        </h2>
+        <p class="message__text">
+          Мы&nbsp;получили вашу заявку и&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время
+        </p>
+      </div>
+    </div>
+  </template>
+
+  <!--! Шаблон карточки товара - не удалять!  -->
+              <template id="productCardTemplate">
+                <div class="product-card">
+                <div class="product-card__visual">
+                  <img class="product-card__img" src="images/item-1.png" height="436" width="290" alt="Изображение товара">
+                  <div class="product-card__more">
+                    <a class="product-card__link btn btn--icon" href="#">
+                      <span class="btn__text">В корзину</span>
+                      <svg aria-hidden="true" width="24" height="24">
+                        <use xlink:href="images/sprite.svg#icon-basket"></use>
+                      </svg>
+                    </a>
+                    <a class="product-card__link btn btn--secondary" href="#">
+                      <span class="btn__text">Подробнее</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="product-card__info">
+                  <h2 class="product-card__title">Потолочная люстра Ornella A4059PL-4AB (Artelamp)</h2>
+                  <span class="product-card__old">
+                  <span class="product-card__old-number">15 300</span>
+                  <span class="product-card__old-add">₽</span>
+                  </span>
+                  <span class="product-card__price">
+                  <span class="product-card__price-number">11 540</span>
+                  <span class="product-card__price-add">₽</span>
+                  </span>
+                  <div class="product-card__tooltip tooltip">
+                    <button class="tooltip__btn" aria-label="Показать подсказку">
+                      <svg class="tooltip__icon" aria-hidden="true" width="5" height="10">
+                        <use xlink:href="images/sprite.svg#icon-i"></use>
+                      </svg>
+                    </button>
+                    <div class="tooltip__content">
+                      <span class="tooltip__text">Наличие товара по городам:</span>
+                      <ul class="tooltip__list">
+                        <li class="tooltip__item">
+                          <span class="tooltip__text">Москва: <span class="tooltip__count">454</span></span>
+                        </li>
+                        <li class="tooltip__item">
+                          <span class="tooltip__text">Оренбург: <span class="tooltip__count">381</span></span>
+                        </li>
+                        <li class="tooltip__item">
+                          <span class="tooltip__text">Санкт-Петербург: <span class="tooltip__count">15</span></span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </template>
+              <!--/ Шаблон карточки товара  -->
+  <!--! Шаблон карточки товар дня - не удалять! -->
+            <template id="productCardDayTemplate">
+              <div class="product-card product-card--small">
+              <div class="product-card__visual">
+                <img class="product-card__img" src height="344" width="290" alt="Изображение товара">
+                <div class="product-card__more">
+                  <a class="product-card__link btn btn--icon" href="#">
+                    <span class="btn__text">В корзину</span>
+                    <svg aria-hidden="true" width="24" height="24">
+                      <use xlink:href="images/sprite.svg#icon-basket"></use>
+                    </svg>
+                  </a>
+                  <a class="product-card__link btn btn--secondary" href="#">
+                    <span class="btn__text">Подробнее</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-card__info">
+                <h2 class="product-card__title"></h2>
+                <span class="product-card__old">
+                  <span class="product-card__old-number"></span>
+                  <span class="product-card__old-add">₽</span>
+                </span>
+                <span class="product-card__price">
+                  <span class="product-card__price-number"> </span>
+                  <span class="product-card__price-add">₽</span>
+                </span>
+                <div class="product-card__tooltip tooltip">
+                  <button class="tooltip__btn" aria-label="Показать подсказку">
+                    <svg class="tooltip__icon" aria-hidden="true" width="5" height="10">
+                      <use xlink:href="images/sprite.svg#icon-i"></use>
+                    </svg>
+                  </button>
+                  <div class="tooltip__content">
+                    <span class="tooltip__text">Наличие товара по городам:</span>
+                    <ul class="tooltip__list">
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Москва: <span class="tooltip__count"></span></span>
+                      </li>
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Оренбург: <span class="tooltip__count"></span></span>
+                      </li>
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Санкт-Петербург: <span class="tooltip__count"></span></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </template>
+            <!--/ Шаблон карточки товар дня  -->
+            <!--! Шаблон фрагмента корзины - не удалять! -->
+               <template id="basketItemTemplate">
+                  <li class="basket__item">
+                    <div class="basket__img">
+                      <img src alt="Фотография товара" height="60" width="60">
+                    </div>
+                    <span class="basket__name"></span>
+                    <span class="basket__price"></span>
+                    <button class="basket__item-close" type="button">
+                      <svg class="main-menu__icon" aria-hidden="true" width="24" height="24">
+                        <use href="images/sprite.svg#icon-close"></use>
+                      </svg>
+                    </button>
+                  </li>
+               </template>
+                <!--/ Шаблон фрагмента корзины  -->
 <header class="header">
   <div class="container">
 
     <!-- Header - top -->
     <div class="header__top">
-      <a href="#" class="header__logo-link">
-        <svg class="header__logo" width="140" height="26" aria-hidden="true">
+      <a class="header__logo-link" href="#">
+        <svg class="header__logo" aria-hidden="true" width="140" height="26">
           <use xlink:href="images/sprite.svg#icon-logo"></use>
         </svg>
       </a>
-      <button id="burgerBtn" class="header__catalog-btn" type="button">
-        <svg class="header__logo" width="24" height="24" aria-hidden="true">
+      <button class="header__catalog-btn" id="burgerBtn" type="button">
+        <svg class="header__logo" aria-hidden="true" width="24" height="24">
           <use xlink:href="images/sprite.svg#icon-menu"></use>
         </svg>
         <span class="header__catalog-text">Каталог</span>
       </button>
 
       <!-- Location -->
-      <div  class="header__location location">
-        <svg class="location__icon" width="24" height="24" aria-hidden="true">
-          <use href="images/sprite.svg#icon-location"></use>
+      <div class="header__location location">
+        <svg class="location__icon" aria-hidden="true" width="24" height="24">
+          <use xlink:href="images/sprite.svg#icon-location"></use>
         </svg>
         <span class="location__text">Ваш город:</span>
-        <button id="changeLocationBtn" class="location__city location__city" type="button">
-          <span id="currentLocationText" class="location__city-name">Оренбург</span>
-          <svg class="location__arrow" width="9" height="6" aria-hidden="true">
-            <use href="images/sprite.svg#icon-arrow-bottom"></use>
+        <button class="location__city" id="changeLocationBtn" type="button">
+          <span class="location__city-name" id="currentLocationText">Оренбург</span>
+          <svg class="location__arrow" aria-hidden="true" width="9" height="6">
+            <use xlink:href="images/sprite.svg#icon-arrow-bottom"></use>
           </svg>
         </button>
-        <ul id="locationList" class="location__sublist">
+        <ul class="location__sublist">
           <li class="location__subitem">
             <button class="location__sublink" type="button">Москва</button>
           </li>
@@ -52,42 +196,33 @@
       </div>
 
       <!-- User list -->
-      <ul class="header__user-list">
-        <li class="header__user-item">
-          <button class="header__user-btn" type="button">
+      <ul class="header__user-list" id="headerUserList">
+
+          <li class="header__user-item">
+          <button class="header__user-btn" id="basketBtn" type="button">
             <span class="header__user-text">Корзина</span>
-            <svg class="header__user-icon" width="24" height="24" aria-hidden="true">
+            <svg class="header__user-icon" aria-hidden="true" width="24" height="24">
               <use xlink:href="images/sprite.svg#icon-basket"></use>
             </svg>
-            <span class="header__user-count">2</span>
+            <span class="header__user-count" id="basketBtnCount">0</span>
           </button>
 
-          <!-- Basket -->
-          <div class="header__basket basket">
-            <ul class="basket__list">
-              <!--
-              <li class="basket__item">
-                <div class="basket__img">
-                  <img src="images/item-1.png" alt="Фотография товара" height="60" width="60">
-                </div>
-                <span class="basket__name">Citilux Идальго CL434321 Бра с выключателем</span>
-                <span class="basket__price">5690 руб</span>
-                <button class="basket__item-close" type="button">
-                  <svg class="main-menu__icon" width="24" height="24" aria-hidden="true">
-                    <use xlink:href="images/sprite.svg#icon-close"></use>
-                  </svg>
-                </button>
-              </li>
-               -->
+           <!-- Basket  -->
+          <div class="header__basket basket" id="basket">
+            <ul class="basket__list" id="basketList">
+              <!-- вставка карточек товаров из шаблона -->
+
             </ul>
-            <!-- <a class="basket__link btn" href="#">Перейти к оформлению</a> -->
+             <a class="basket__link btn visually-hidden" href="#">Перейти к оформлению</a>
             <div class="basket__empty-block">Корзина пока пуста</div>
           </div>
         </li>
+
+
         <li class="header__user-item">
           <button class="header__user-btn" type="button">
             <span class="header__user-text">Войти</span>
-            <svg class="header__user-icon" width="24" height="24" aria-hidden="true">
+            <svg class="header__user-icon" aria-hidden="true" width="24" height="24">
               <use xlink:href="images/sprite.svg#icon-user"></use>
             </svg>
           </button>
@@ -115,18 +250,18 @@
         </li>
       </ul>
       <div class="header__contacts">
-        <a href="tel:+78002220037" class="header__phone">+7 (800) 222-00-37</a>
+        <a class="header__phone" href="tel:+78002220037">+7 (800) 222-00-37</a>
         <button class="header__btn btn" type="button">Обратный звонок</button>
       </div>
     </div>
 
     <!-- Catalog -->
-    <div id="mainMenu" class="header__catalog main-menu">
+    <div class="header__catalog main-menu" id="mainMenu">
       <div class="main-menu__wrapper">
         <div class="main-menu__heading">
           <h2 class="main-menu__title">Категории товаров</h2>
-          <button id="closeMenuBtn" class="main-menu__close" type="button">
-            <svg class="main-menu__icon" width="24" height="24" aria-hidden="true">
+          <button class="main-menu__close" id="closeMenuBtn" type="button">
+            <svg class="main-menu__icon" aria-hidden="true" width="24" height="24">
               <use xlink:href="images/sprite.svg#icon-close"></use>
             </svg>
           </button>
@@ -202,9 +337,9 @@
     <div class="container">
       <h1 class="catalog__title">Светильники</h1>
       <div class="catalog__wrapper">
-        <form action="#" method="get" class="catalog-form">
-          <button class="catalog-form__reset" type="reset">
-            <svg width="24" height="24" aria-hidden="true">
+        <form class="catalog-form" id="filterForm" action="#" method="get">
+          <button class="catalog-form__reset" id="filterResetBtn" type="reset">
+            <svg aria-hidden="true" width="24" height="24">
               <use xlink:href="images/sprite.svg#icon-filter"></use>
             </svg>
             <span class="catalog-form__reset-text">Сбросить фильтры</span>
@@ -219,7 +354,7 @@
                       <span class="custom-checkbox__name">
                         Подвесные
                       </span>
-                    <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+                    <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                       <use xlink:href="images/sprite.svg#icon-check"></use>
                     </svg>
                     <span class="custom-checkbox__count">158</span>
@@ -233,7 +368,7 @@
                       <span class="custom-checkbox__name">
                         Потолочные
                       </span>
-                    <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+                    <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                       <use xlink:href="images/sprite.svg#icon-check"></use>
                     </svg>
                     <span class="custom-checkbox__count">118</span>
@@ -247,7 +382,7 @@
                       <span class="custom-checkbox__name">
                         Накладные
                       </span>
-                    <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+                    <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                       <use xlink:href="images/sprite.svg#icon-check"></use>
                     </svg>
                     <span class="custom-checkbox__count">463</span>
@@ -261,7 +396,7 @@
                       <span class="custom-checkbox__name">
                         Точечные
                       </span>
-                    <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+                    <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                       <use xlink:href="images/sprite.svg#icon-check"></use>
                     </svg>
                     <span class="custom-checkbox__count">158</span>
@@ -270,13 +405,12 @@
               </li>
               <li class="catalog-form__item-col">
                 <div class="custom-checkbox custom-checkbox--nightlights">
-                  <input class="visually-hidden custom-checkbox__field" id="nightlights" type="checkbox"
-                         name="type" value="nightlights">
+                  <input class="visually-hidden custom-checkbox__field" id="nightlights" type="checkbox" name="type" value="nightlights">
                   <label class="custom-checkbox__label" for="nightlights">
                       <span class="custom-checkbox__name">
                         Ночники
                       </span>
-                    <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+                    <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                       <use xlink:href="images/sprite.svg#icon-check"></use>
                     </svg>
                     <span class="custom-checkbox__count">118</span>
@@ -290,8 +424,7 @@
             <ul class="catalog-form__list-row">
               <li class="catalog-form__item-row">
                 <div class="custom-radio">
-                  <input class="visually-hidden custom-radio__field" id="instock" type="radio" name="status"
-                         value="instock">
+                  <input class="visually-hidden custom-radio__field" id="instock" type="radio" name="status" value="instock">
                   <label class="custom-radio__label" for="instock">
                     <span class="custom-radio__toggle"></span>
                     <span class="custom-radio__text">В наличии</span>
@@ -300,8 +433,7 @@
               </li>
               <li class="catalog-form__item-row">
                 <div class="custom-radio">
-                  <input class="visually-hidden custom-radio__field" id="all-item" type="radio" name="status"
-                         value="all-item" checked>
+                  <input class="visually-hidden custom-radio__field" id="all-item" type="radio" name="status" value="all-item" checked>
                   <label class="custom-radio__label" for="all-item">
                     <span class="custom-radio__toggle"></span>
                     <span class="custom-radio__text">Все</span>
@@ -311,79 +443,43 @@
             </ul>
           </fieldset>
         </form>
-        <div class="catalog__products">
+        <div class="catalog__products" id="catalogProducts">
           <div class="catalog__sort">
             <p class="catalog__sort-text">Сортировать по:</p>
-            <select class="catalog__sort-select" name="sort">
+            <select class="catalog__sort-select" id="sorting" name="sort">
               <option value="price-min">Сначала дешёвые</option>
               <option value="price-max">Сначала дорогие</option>
               <option value="rating-max">Сначала популярные</option>
             </select>
           </div>
-          <ul class="catalog__list">
-            <li class="catalog__item">
-              <div class="product-card">
-                <div class="product-card__visual">
-                  <img class="product-card__img" src="images/item-1.png" height="436" width="290"
-                       alt="Изображение товара">
-                  <div class="product-card__more">
-                    <a href="#" class="product-card__link btn btn--icon">
-                      <span class="btn__text">В корзину</span>
-                      <svg width="24" height="24" aria-hidden="true">
-                        <use xlink:href="images/sprite.svg#icon-basket"></use>
-                      </svg>
-                    </a>
-                    <a href="#" class="product-card__link btn btn--secondary">
-                      <span class="btn__text">Подробнее</span>
-                    </a>
-                  </div>
-                </div>
-                <div class="product-card__info">
-                  <h2 class="product-card__title">Потолочная люстра Ornella A4059PL-4AB (Artelamp)</h2>
-                  <span class="product-card__old">
-                  <span class="product-card__old-number">15 300</span>
-                  <span class="product-card__old-add">₽</span>
-                </span>
-                  <span class="product-card__price">
-                  <span class="product-card__price-number">11 540</span>
-                  <span class="product-card__price-add">₽</span>
-                </span>
-                  <div class="product-card__tooltip tooltip">
-                    <button class="tooltip__btn" aria-label="Показать подсказку">
-                      <svg class="tooltip__icon" width="5" height="10" aria-hidden="true">
-                        <use xlink:href="images/sprite.svg#icon-i"></use>
-                      </svg>
-                    </button>
-                    <div class="tooltip__content">
-                      <span class="tooltip__text">Наличие товара по городам:</span>
-                      <ul class="tooltip__list">
-                        <li class="tooltip__item">
-                          <span class="tooltip__text">Москва: <span class="tooltip__count">454</span></span>
-                        </li>
-                        <li class="tooltip__item">
-                          <span class="tooltip__text">Оренбург: <span class="tooltip__count">381</span></span>
-                        </li>
-                        <li class="tooltip__item">
-                          <span class="tooltip__text">Санкт-Петербург: <span class="tooltip__count">15</span></span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
+          <ul class="catalog__list" id="catalogList">
+            <!--! Добавление карточек из шаблона-->
           </ul>
-          <ol class="catalog__pagination">
-            <li class="catalog__pagination-item">
-              <button class="catalog__pagination-link">1</button>
-            </li>
-            <li class="catalog__pagination-item">
-              <button class="catalog__pagination-link">2</button>
-            </li>
-            <li class="catalog__pagination-item">
-              <button class="catalog__pagination-link">3</button>
-            </li>
-          </ol>
+          <ol class="catalog__pagination" id="mainPagination">
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">1</button>
+              </li>
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">2</button>
+              </li>
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">3</button>
+              </li>
+            </ol>
+          <template id="paginationTemplate">
+            <ol class="catalog__pagination" id="catalogPagination">
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">1</button>
+              </li>
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">2</button>
+              </li>
+              <li class="catalog__pagination-item">
+                <button class="catalog__pagination-link">3</button>
+              </li>
+            </ol>
+          </template>
+
         </div>
       </div>
     </div>
@@ -397,13 +493,13 @@
 
         <!-- Навигация для слайдера -->
         <div class="day-products__navigation">
-          <button class="day-products__navigation-btn day-products__navigation-btn--prev" disabled type="button">
-            <svg width="41" height="9" aria-hidden="true">
+          <button class="day-products__navigation-btn day-products__navigation-btn--prev" id="sliderPrevBtn" disabled type="button">
+            <svg aria-hidden="true" width="41" height="9">
               <use xlink:href="images/sprite.svg#icon-arrow-prev"></use>
             </svg>
           </button>
-          <button class="day-products__navigation-btn day-products__navigation-btn--next" type="button">
-            <svg width="41" height="9" aria-hidden="true">
+          <button class="day-products__navigation-btn day-products__navigation-btn--next" id="sliderNextBtn" type="button">
+            <svg aria-hidden="true" width="41" height="9">
               <use xlink:href="images/sprite.svg#icon-arrow-next"></use>
             </svg>
           </button>
@@ -411,59 +507,11 @@
       </div>
 
       <!-- Слайдер -->
-      <div class="day-products__slider swiper">
-        <ul class="day-products__list swiper-wrapper">
-          <li class="day-products__item">
-            <div class="product-card product-card--small">
-              <div class="product-card__visual">
-                <img class="product-card__img" src="images/item-7.png" height="344" width="290"
-                     alt="Изображение товара">
-                <div class="product-card__more">
-                  <a href="#" class="product-card__link btn btn--icon">
-                    <span class="btn__text">В корзину</span>
-                    <svg width="24" height="24" aria-hidden="true">
-                      <use xlink:href="images/sprite.svg#icon-basket"></use>
-                    </svg>
-                  </a>
-                  <a href="#" class="product-card__link btn btn--secondary">
-                    <span class="btn__text">Подробнее</span>
-                  </a>
-                </div>
-              </div>
-              <div class="product-card__info">
-                <h2 class="product-card__title">Потолочная люстра Ornella A4059PL-4AB (Artelamp)</h2>
-                <span class="product-card__old">
-                  <span class="product-card__old-number">15 300</span>
-                  <span class="product-card__old-add">₽</span>
-                </span>
-                <span class="product-card__price">
-                  <span class="product-card__price-number">11 540</span>
-                  <span class="product-card__price-add">₽</span>
-                </span>
-                <div class="product-card__tooltip tooltip">
-                  <button class="tooltip__btn" aria-label="Показать подсказку">
-                    <svg class="tooltip__icon" width="5" height="10" aria-hidden="true">
-                      <use xlink:href="images/sprite.svg#icon-i"></use>
-                    </svg>
-                  </button>
-                  <div class="tooltip__content">
-                    <span class="tooltip__text">Наличие товара по городам:</span>
-                    <ul class="tooltip__list">
-                      <li class="tooltip__item">
-                        <span class="tooltip__text">Москва: <span class="tooltip__count">454</span></span>
-                      </li>
-                      <li class="tooltip__item">
-                        <span class="tooltip__text">Оренбург: <span class="tooltip__count">381</span></span>
-                      </li>
-                      <li class="tooltip__item">
-                        <span class="tooltip__text">Санкт-Петербург: <span class="tooltip__count">15</span></span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
+      <div class="day-products__slider swiper" id="dayProductsSwiper">
+        <ul class="day-products__list swiper-wrapper" id="dayProdustsSlider">
+
+           <!-- добавление карточки "Товар дня" из класса -->
+
         </ul>
       </div>
     </div>
@@ -472,7 +520,7 @@
   <!-- Описание компании -->
   <section class="description">
     <div class="container">
-      <svg class="description__lamp" width="94" height="94" aria-hidden="true">
+      <svg class="description__lamp" aria-hidden="true" width="94" height="94">
         <use xlink:href="images/sprite.svg#icon-lamp"></use>
       </svg>
       <h2 class="visually-hidden">Описание магазина</h2>
@@ -489,7 +537,7 @@
     <div class="container">
       <div class="faq__wrapper">
         <h2 class="faq__title">Ответы на частые вопросы от покупателей</h2>
-        <div class="faq__accordion accordion">
+        <div class="faq__accordion accordion" id="faqAccordion">
           <div class="accordion__element">
             <button class="accordion__btn" type="button">
               <span class="accordion__btn-text">Вы работаете с НДС?</span>
@@ -575,23 +623,23 @@
         </h2>
         <img class="questions__img" src="images/lamp.png" width="253" height="319" alt="Фотография лампы">
         <p class="questions__text">Эксперты по светотехнике подберут накладные светильники специально под вашу задачу. Вы получите проект освещения и профессиональную консультацию бесплатно.</p>
-        <form action="#" method="POST" class="questions__form">
+        <form class="questions__form" id="questionsForm" action="#" method="POST">
           <div class="questions__inner">
             <div class="custom-input">
-              <label for="name" class="custon-input__label">Ваше имя</label>
-              <input type="text" class="custom-input__field" id="name" placeholder="Светлана">
+              <label class="custon-input__label" for="name">Ваше имя</label>
+              <input class="custom-input__field" name="name" id="name" type="text" placeholder="Светлана">
             </div>
             <div class="custom-input">
-              <label for="email" class="custon-input__label">Ваша почта</label>
-              <input type="email" class="custom-input__field" id="email" placeholder="example@example.com">
+              <label class="custon-input__label" for="email">Ваша почта</label>
+              <input class="custom-input__field" name="email" id="email" type="email" placeholder="example@example.com">
             </div>
-            <button class="questions__btn btn btn--big" type="submit">Отправить заявку</button>
+            <button class="questions__btn btn btn--big" id="questionsFormSubmit" type="submit">Отправить заявку</button>
           </div>
           <div class="custom-checkbox">
-            <input class="visually-hidden custom-checkbox__field" id="agree" type="checkbox" name="pendant">
+            <input class="visually-hidden custom-checkbox__field" id="agree" type="checkbox">
             <label class="custom-checkbox__label" for="agree">
               <span class="custom-checkbox__name">Я согласен с политикой конфиденциальности</span>
-              <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
+              <svg class="custom-checkbox__icon" aria-hidden="true" width="10" height="10">
                 <use xlink:href="images/sprite.svg#icon-check"></use>
               </svg>
             </label>
@@ -606,7 +654,7 @@
   <div class="container">
     <div class="footer__main">
       <a class="footer__logo-link" href="#">
-        <svg class="footer__logo" width="180" height="33" aria-hidden="true">
+        <svg class="footer__logo" aria-hidden="true" width="180" height="33">
           <use xlink:href="images/sprite.svg#icon-logo-black"></use>
         </svg>
       </a>
@@ -644,17 +692,17 @@
         <button class="footer__btn btn">Свяжитесь с нами</button>
         <ul class="footer__cards">
           <li class="footer__card">
-            <svg class="footer__logo" width="44" height="15" aria-hidden="true">
+            <svg class="footer__logo" aria-hidden="true" width="44" height="15">
               <use xlink:href="images/sprite.svg#icon-visa"></use>
             </svg>
           </li>
           <li class="footer__card">
-            <svg class="footer__logo" width="34" height="22" aria-hidden="true">
+            <svg class="footer__logo" aria-hidden="true" width="34" height="22">
               <use xlink:href="images/sprite.svg#icon-mc"></use>
             </svg>
           </li>
           <li class="footer__card">
-            <svg class="footer__logo" width="66" height="19" aria-hidden="true">
+            <svg class="footer__logo" aria-hidden="true" width="66" height="19">
               <use xlink:href="images/sprite.svg#icon-mir"></use>
             </svg>
           </li>
@@ -670,7 +718,7 @@
       <span class="footer__copyright">© ООО "Бриатон"</span>
       <a class="footer__develop" href="https://affarts.ru/">
         <span class="footer__develop-text">Дизайн сделан в</span>
-        <svg class="footer__develop-logo" width="62" height="18" aria-hidden="true">
+        <svg class="footer__develop-logo" aria-hidden="true" width="62" height="18">
           <use xlink:href="images/sprite.svg#icon-affarts"></use>
         </svg>
       </a>

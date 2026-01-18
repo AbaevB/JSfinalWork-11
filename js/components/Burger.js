@@ -1,4 +1,4 @@
-// js/components/burger.js
+// js/components/Burger.js
 export default function burger() {
     let burgerBtnEl = document.getElementById('burgerBtn');
     let mainMenuEl = document.getElementById('mainMenu');
@@ -9,29 +9,29 @@ export default function burger() {
     // Обработчик открытия меню
     burgerBtnEl.addEventListener('click', () => {
         mainMenuEl.classList.add('main-menu--active');
-        disableScroll(); // Блокирует скролл
+        disableScroll(); // Заблокируем скроллинг
     });
 
     // Обработчик закрытия меню
     closeBtnEl.addEventListener('click', () => {
         mainMenuEl.classList.remove('main-menu--active');
-        enableScroll(); // Разблокирует скролл
+        enableScroll(); // Разблокируем скроллинг
     });
 
     // Закрытие меню при клике на ссылку
     mainMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
             mainMenuEl.classList.remove('main-menu--active');
-            enableScroll(); // Разблокиру скроллинг
+            enableScroll(); // Разблокируем скроллинг
         });
     });
 
-    // Заблокировать скролл
+    // Заблокировать скроллинг
     function disableScroll() {
         document.body.style.overflowY = 'hidden';
     }
 
-    // Разрешить скролл
+    // Разрешить скроллинг
     function enableScroll() {
         document.body.style.overflowY = 'auto';
     }

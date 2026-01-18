@@ -1,9 +1,9 @@
-// src/components/changeLocation.js
+// src/components/ChangeLocation.js
 
 export default function changeLocation() {
-  const currentLocationEl = document.getElementById('currentLocationText');
-  const changeLocationBtnEl = document.getElementById('changeLocationBtn');
-  const locationBtns = document.querySelectorAll('.location__sublink');
+  let currentLocationEl = document.getElementById('currentLocationText');
+  let changeLocationBtnEl = document.getElementById('changeLocationBtn');
+  let locationBtns = document.querySelectorAll('.location__sublink');
 
   // Обработчик открытия и закрытия меню
   changeLocationBtnEl.addEventListener('click', () => {
@@ -13,7 +13,7 @@ export default function changeLocation() {
   // Обработчик выбора города
   locationBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const newLocation = btn.textContent.trim();
+      let newLocation = btn.textContent.trim();
       currentLocationEl.textContent = newLocation;
       changeLocationBtnEl.classList.remove('location__city--active');
     });
