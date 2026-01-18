@@ -1,0 +1,95 @@
+Сейчас мы на ветке `feature/slider`, и нам надо будет реализовать слайдер в секции "Товары дня" с использованием локально подключенной библиотеки *Swiper.js*. Вот требования у слайдеру из документации проекта:
+
+```markdown
+
+# Слайдер в секции "Товар дня" на основе *Swiper.js*
+
+> В блок «Товары дня» должны попадать только те карточки товаров, в данных которых (файл */data.json*) есть свойство g`oodsOfDay` со значением `true`. Это позволит отобразить в слайдере только актуальные товары дня.
+
+## Создание слайдов
+
+1. В отдельном модуле `slider.js` напишите функцию для создания слайдов с товарами.
+
+2. Для каждого товара из отобранных данных создайте элемент `<li>`, добавив ему два класса: *.day-products__item* и .*swiper-slide*.
+
+3. Внутрь каждого элемента `<li>` вставьте HTML-разметку карточки товара. Для генерации этой разметки используйте заранее подготовленную функцию, которая наполняет карточку данными из файла *data.json*.
+
+## Инициализация слайдера
+
+1. После того как все карточки товаров были отрисованы в блоке, инициализируйте слайдер с помощью библиотеки **Swiper.js**.
+
+2. В том же модуле `slider.js` создайте отдельную функцию, которая будет отвечать за настройку и запуск слайдера.
+
+Настройте слайдер следующим образом:
+
+- навигация: добавьте стрелки навигации с классами *.day-products__navigation-btn--next* и .*day-products__navigation-btn--prev*;
+
+- отступы между слайдами: с помощью свойства **spaceBetween** задайте расстояние между слайдами;
+
+- количество видимых слайдов: с помощью свойства **slidesPerView** укажите, сколько слайдов должно быть видно одновременно (по макету это четыре слайда).
+
+## Важные моменты
+
+- Сначала необходимо отфильтровать карточки по критерию goodsOfDay: true, создать HTML-разметку слайда для каждой из них и добавить их в список блока товаров дня.
+
+- Инициализируйте слайдер Swiper с заданными настройками только после того, как все карточки будут добавлены в блок «Товары дня».
+
+```
+
+Карточка товара в слайдере отличается по верстке от той,что была в блоке каталога - я предлагаю создать для нее унаследованный от класса `js/components/ProductCard.js` класс `ProductCardDay`, используя следующую разметку: 
+
+
+```html
+<div class="product-card product-card--small">
+              <div class="product-card__visual">
+                <img class="product-card__img" src="images/item-7.png" height="344" width="290"
+                     alt="Изображение товара">
+                <div class="product-card__more">
+                  <a href="#" class="product-card__link btn btn--icon">
+                    <span class="btn__text">В корзину</span>
+                    <svg width="24" height="24" aria-hidden="true">
+                      <use xlink:href="images/sprite.svg#icon-basket"></use>
+                    </svg>
+                  </a>
+                  <a href="#" class="product-card__link btn btn--secondary">
+                    <span class="btn__text">Подробнее</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-card__info">
+                <h2 class="product-card__title">Потолочная люстра Ornella A4059PL-4AB (Artelamp)</h2>
+                <span class="product-card__old">
+                  <span class="product-card__old-number">15 300</span>
+                  <span class="product-card__old-add">₽</span>
+                </span>
+                <span class="product-card__price">
+                  <span class="product-card__price-number">11 540</span>
+                  <span class="product-card__price-add">₽</span>
+                </span>
+                <div class="product-card__tooltip tooltip">
+                  <button class="tooltip__btn" aria-label="Показать подсказку">
+                    <svg class="tooltip__icon" width="5" height="10" aria-hidden="true">
+                      <use xlink:href="images/sprite.svg#icon-i"></use>
+                    </svg>
+                  </button>
+                  <div class="tooltip__content">
+                    <span class="tooltip__text">Наличие товара по городам:</span>
+                    <ul class="tooltip__list">
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Москва: <span class="tooltip__count">454</span></span>
+                      </li>
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Оренбург: <span class="tooltip__count">381</span></span>
+                      </li>
+                      <li class="tooltip__item">
+                        <span class="tooltip__text">Санкт-Петербург: <span class="tooltip__count">15</span></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+``` 
+
+Возможно, стоит использовать для этого новый шаблон <template>

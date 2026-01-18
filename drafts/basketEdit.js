@@ -1,0 +1,172 @@
+// components/basket.js
+
+import BasketItem from './BasketItem.js';
+import fetchData from './fetchData.js';
+
+let products = []; // Массив товаров
+
+// Загрузка данных о товарах
+fetchData().then(data => {
+  products = data;
+  renderBasket(); // Перерисовываем корзину после загрузки данных
+});
+
+// Функция для генерации уникального 6-значного ID
+function generateUniqueId(existingIds) {
+  let id;
+  do {
+    id = Math.floor(100000 + Math.random() * 900000).toString();
+  } while (existingIds.has(id));
+  return id;
+}
+
+function basketToggle() {
+  let basketBtnEl = document.getElementById('basketBtn');
+  let basketEl = document.getElementById('basket');
+
+  basketBtnEl.addEventListener('click', () => {
+    basketEl.classList.toggle('basket--active');
+  });
+}
+
+// Массив товаров в корзине
+let basketItems = [];
+
+// Добавление товара в корзину
+function addToBasket(product) {
+  let basketListEl = document.getElementById('basketList');
+
+  // Получим все текущие basketId, чтобы избежать дублей
+  const existingIds = new Set(basketItems.map(item => item.basketId));
+  const newId = generateUniqueId(existingIds);
+
+  // Создаем копию товара и добавляем basketId
+  let productWithId = { ...product, basketId: newId };
+  basketItems.push(productWithId);
+
+  // Создаем и добавляем компонент корзины
+  let basketItem = new BasketItem(productWithId, removeFromBasket);
+  basketListEl.appendChild(basketItem.element());
+
+  // Обновляем отображение пустого блока и кнопки оформления
+  let emptyBlockEl = document.querySelector('.basket__empty-block');
+  let linkEl = document.querySelector('.basket__link');
+  emptyBlockEl.classList.add('visually-hidden');
+  linkEl.classList.remove('visually-hidden');
+
+  // Обновляем счетчик
+  updateBasketCounter();
+
+  // Сохраняем в localStorage
+  saveToStorage();
+}
+
+// Обновление количества товаров
+function updateBasketCounter() {
+  let basketBtnCountEl = document.getElementById('basketBtnCount');
+  let basketListEl = document.querySelector('.basket__list');
+  let itemsCount = basketListEl.children.length;
+  basketBtnCountEl.textContent = itemsCount;
+}
+
+
+
+// Сохранение корзины в localStorage
+
+function saveToStorage() {
+  let basketData = basketItems.map(item => ({
+    basketId: item.basketId,
+    productId: item.id
+  }));
+  localStorage.setItem('basket', JSON.stringify(basketData));
+}
+
+
+// Удаление товара из корзины по basketId
+function removeFromBasket(basketId) {
+  let basketListEl = document.getElementById('basketList');
+
+  // Находим DOM-элемент по data-product-id
+  let itemToRemove = basketListEl.querySelector(`[data-product-id="${basketId}"]`);
+  if (itemToRemove) {
+    itemToRemove.remove();
+  }
+
+  // Удаляем из массива по basketId
+  basketItems = basketItems.filter(item => item.basketId !== basketId);
+
+  // Если корзина пуста, показываем блок "пусто" и скрываем кнопку заказа
+  if (basketItems.length === 0) {
+    let emptyBlockEl = document.querySelector('.basket__empty-block');
+    let linkEl = document.querySelector('.basket__link');
+    emptyBlockEl.classList.remove('visually-hidden');
+    linkEl.classList.add('visually-hidden');
+    console.log('Корзина пуста после удаления:', emptyBlockEl.classList.contains('visually-hidden'), linkEl.classList.contains('visually-hidden'));
+  } else {
+    console.log('Корзина не пуста после удаления');
+    console.log(basketItems.length);
+    console.log('Содержимое корзины:', basketItems);
+  }
+
+  // Обновление счетчика
+  updateBasketCounter();
+
+  // Обновляем localStorage
+  saveToStorage();
+}
+
+// Загрузка корзины из localStorage
+function loadFromStorage() {
+  let storedBasket = localStorage.getItem('basket');
+  if (storedBasket) {
+    let basketData = JSON.parse(storedBasket);
+    basketItems = basketData.map(item => ({
+      basketId: item.basketId,
+      id: item.productId
+    }));
+    renderBasket();
+    console.log('Загружено из localStorage:', basketItems);
+  } else {
+    console.log('Корзина пуста при загрузке');
+  }
+}
+
+
+
+// Отрисовка корзины при загрузке
+function renderBasket() {
+  let basketListEl = document.getElementById('basketList');
+  basketListEl.innerHTML = '';
+
+  basketItems.forEach(item => {
+    const product = products.find(p => p.id === item.id); // Находим товар по id
+    if (product) {
+      const basketItem = new BasketItem(product,  removeFromBasket);
+      basketListEl.appendChild(basketItem.element());
+      //console.log('Значение basketId: ' +  item.basketId);
+    }
+  });
+
+  // Обновление счётчика
+  updateBasketCounter();
+
+  // Показываем или скрываем блоки
+  let emptyBlockEl = document.querySelector('.basket__empty-block');
+  let linkEl = document.querySelector('.basket__link');
+  if (basketItems.length === 0) {
+    emptyBlockEl.classList.remove('visually-hidden');
+    linkEl.classList.add('visually-hidden');
+  } else {
+    emptyBlockEl.classList.add('visually-hidden');
+    linkEl.classList.remove('visually-hidden');
+  }
+}
+
+// Загружаем корзину при старте
+loadFromStorage();
+
+export {
+  basketToggle,
+  addToBasket,
+  removeFromBasket,
+};
